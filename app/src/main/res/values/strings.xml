@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EK8.3 Eigene Projektidee</string>
+    <string name="editCommand"></string>
 </resources>
