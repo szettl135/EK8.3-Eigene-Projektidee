@@ -6,6 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+    <TextView
+            android:text="@string/txtTranslate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,6 +37,40 @@
             android:layout_height="wrap_content" app:srcCompat="@drawable/ico_mic" android:id="@+id/imageButton2"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
             android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:onClick="startTextToSpeech"/>
+            app:layout_constraintEnd_toEndOf="parent" android:onClick="startTextToSpeech"
+            app:layout_constraintHorizontal_bias="0.25"/>
+    <TextView
+            android:text="@string/txtRotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp" android:layout_marginTop="24dp"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/small_axe"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/imageView" app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+            android:layout_marginTop="24dp"/>
+    <TextView
+            android:text="@string/txtScale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
+    <TextView
+            android:text="@string/txtSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
+    <Button
+            android:text="@string/btnAusf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">EK8.3 Eigene Projektidee</string>
     <string name="editCommand"></string>
+    <string name="txtScale">Scale = Bild vergrößert sich</string>
+    <string name="txtTranslate">Translate = Bild bewegt sich</string>
+    <string name="txtRotate">Rotate = Bild dreht sich</string>
+    <string name="txtSound">Play Sound = Zufälliges Geräusch spielt</string>
+    <string name="btnAusf">Ausführen</string>
 </resources>
