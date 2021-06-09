@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     /**
@@ -54,6 +58,44 @@ public class MainActivity extends AppCompatActivity {
     public void startTextToSpeech(View view) {
         // Spreche den String, schmeiß alle anderen dinge aus der Queue heraus, kein Bundle und eine eindeutige Id
         tts.speak(commandLine.getText().toString(),TextToSpeech.QUEUE_FLUSH,null, "id1");
+    }
+
+    /**
+     * Der Befehl wird per Button ausgeführt
+     * @param view Die View die die Methode aufgerufen hat
+     */
+    public void startCommandsButton(View view) {
+        startCommands(commandLine.getText().toString());
+    }
+
+    /**
+     * Fürht verschiedene Commandos aus
+     * @param command Der command welcher ausgeführt werden soll
+     */
+    private void startCommands(String command) {
+        command = command.toLowerCase();
+        ImageView bild = (ImageView) findViewById(R.id.imageView);
+
+        switch(command) {
+            case "scale":
+                Animation scaleAnimation = new ScaleAnimation(1,2,1, 1.5f);
+                scaleAnimation.setDuration(1000);
+                bild.startAnimation(scaleAnimation);
+                break;
+            case "translate":
+                Animation bewegenAnimation = new TranslateAnimation(0,100,0, -50);
+                bewegenAnimation.setDuration(1500);
+                bild.startAnimation(bewegenAnimation);
+                break;
+            case "rotate":
+                Animation rotateAnimation = new RotateAnimation(0.0f, 360.0f, 24.0f, 24.0f);
+                rotateAnimation.setDuration(2000);
+                bild.startAnimation(rotateAnimation);
+                break;
+            case "play sound":
+                break;
+            default:
+        }
     }
 
     /**
@@ -90,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS); // Wir können und die Daten in ein Array reinspeichern lassen
                     commandLine.setText(result.get(0)); // Dieses können wir dann in die View setzen.
+                    startCommands(result.get(0)); // Führe den Command aus
                 }
                 break;
             }
