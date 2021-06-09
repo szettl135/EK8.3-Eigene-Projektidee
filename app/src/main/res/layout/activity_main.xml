@@ -29,6 +29,6 @@
             android:layout_height="wrap_content" app:srcCompat="@drawable/ico_mic" android:id="@+id/imageButton2"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
             android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" android:onClick="startTextToSpeech"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

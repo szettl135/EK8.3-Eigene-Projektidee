@@ -3,6 +3,7 @@ package at.ac.tgm.hit.sew7.szettl.ek83eigeneprojektidee;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_SPEECH_INPUT = 100;
     private EditText commandLine;
-    private ImageButton imgBtn;
+    TextToSpeech tts;
 
     /**
      * Methode die aufgerufen wird wenn die Activity erstellt wird
@@ -33,7 +34,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         commandLine = (EditText) findViewById(R.id.editTextTextPersonName);
-        imgBtn = (ImageButton) findViewById(R.id.imageButton);
+
+        // Wir fügen einen initListener dazu, demit die Engine initialiert werden kann
+        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                // Wir checken nach ob es einen Fehler gab
+                if(status != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.UK); // Wir setzen die Sprache
+                }
+            }
+        });
+    }
+
+    /**
+     * Diese Methode startet TextToSpeech.
+     * @param view Die View die die Methode aufgerufen hat
+     */
+    public void startTextToSpeech(View view) {
+        // Spreche den String, schmeiß alle anderen dinge aus der Queue heraus, kein Bundle und eine eindeutige Id
+        tts.speak(commandLine.getText().toString(),TextToSpeech.QUEUE_FLUSH,null, "id1");
     }
 
     /**
