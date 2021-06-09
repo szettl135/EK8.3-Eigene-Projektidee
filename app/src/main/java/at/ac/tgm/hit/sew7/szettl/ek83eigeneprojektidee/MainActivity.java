@@ -2,6 +2,7 @@ package at.ac.tgm.hit.sew7.szettl.ek83eigeneprojektidee;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Die Main Activity die Befehle durch SpeechToText übernimmt.
@@ -24,6 +26,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_SPEECH_INPUT = 100;
+    private MediaPlayer mediaPlayer;
     private EditText commandLine;
     TextToSpeech tts;
 
@@ -93,8 +96,47 @@ public class MainActivity extends AppCompatActivity {
                 bild.startAnimation(rotateAnimation);
                 break;
             case "play sound":
+                //Hier checken wir zuerst nach ob der MediaPlayer schon initialisiert wurde mit einem Sound
+                if (mediaPlayer != null) {
+                    // Dann stoppen wir das Lied
+                    mediaPlayer.stop();
+                    // Releasen es, damit es in den End state kommt
+                    mediaPlayer.release();
+                    // Und dann könne wir das derzeitige Audio file löschen
+                    mediaPlayer = null;
+                }
+                // Hier checken wir welcher Button gedrückt wurde
+                // und entscheiden danach welcher Sound abgespielt wird
+                switch(new Random().nextInt(6))
+                {
+                    case 0:
+                        mediaPlayer = MediaPlayer.create(this, R.raw.record_scratch);
+                        mediaPlayer.start();
+                        break;
+                    case 1:
+                        mediaPlayer = MediaPlayer.create(this, R.raw.cannon_sound);
+                        mediaPlayer.start();
+                        break;
+                    case 2:
+                        mediaPlayer = MediaPlayer.create(this, R.raw.inception);
+                        mediaPlayer.start();
+                        break;
+                    case 3:
+                        mediaPlayer = MediaPlayer.create(this, R.raw.censor_beep_sound);
+                        mediaPlayer.start();
+                        break;
+                    case 4:
+                        mediaPlayer = MediaPlayer.create(this, R.raw.cartoon_slip);
+                        mediaPlayer.start();
+                        break;
+                    case 5:
+                        mediaPlayer = MediaPlayer.create(this, R.raw.baggels);
+                        mediaPlayer.start();
+                        break;
+                }
                 break;
             default:
+                Toast.makeText(getApplicationContext(),"Unbekanntes Kommando",Toast.LENGTH_SHORT).show();
         }
     }
 
